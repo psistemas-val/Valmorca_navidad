@@ -1,0 +1,271 @@
+/* RESET Y ESTILOS BASE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #000; /* Fondo negro de base */
+    overflow: hidden;
+    height: 100vh;
+    color: white; /* Color de texto base para la interfaz */
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* ---------------------------------- */
+/* ANIMACIÓN DE NIEVE        */
+/* ---------------------------------- */
+
+#snow-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    /* Optimización de rendimiento */
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000;
+}
+
+.snowflake {
+    position: absolute;
+    color: #fff;
+    font-size: 1em;
+    font-family: Arial, sans-serif;
+    text-shadow: 0 0 5px #000000;
+    user-select: none;
+    /* Optimización de rendimiento */
+    will-change: transform, left;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+}
+
+@media (max-width: 768px) {
+    .snowflake {
+        text-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+    }
+}
+
+/* ---------------------------------- */
+/* CONTENEDOR PRINCIPAL     */
+/* ---------------------------------- */
+
+.container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 10px;
+}
+
+/* Estilo para la única sección visible: el regalo y contador */
+.gift-container {
+    /* Eliminado 'display: none;' ya que es la vista principal */
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 25px 20px;
+    width: 100%;
+    max-width: 350px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    margin: 0 auto; /* Asegura el centrado */
+}
+
+h2 {
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+/* ---------------------------------- */
+/* IMAGEN / GIF DE REGALO    */
+/* ---------------------------------- */
+
+.gift-image {
+    /* Estilos del contenedor */
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    display: block; /* Asegura que la imagen real se comporte como bloque */
+    object-fit: contain; /* Ajusta el contenido dentro de las dimensiones */
+    /* Animación, ajustada para el GIF */
+    animation: pulse 2s infinite;
+}
+
+/* ---------------------------------- */
+/* CUENTA REGRESIVA         */
+/* ---------------------------------- */
+
+.countdown {
+    color: white;
+    text-align: center;
+    margin: 20px 0;
+    font-size: 18px;
+}
+
+.countdown-values {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.countdown-item {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 8px;
+    border-radius: 8px;
+    min-width: 50px;
+}
+
+.countdown-number {
+    font-size: 20px;
+    font-weight: bold;
+    color: #cccccc; /* Destacar el número */
+}
+
+.countdown-label {
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+/* ---------------------------------- */
+/* BOTÓN                  */
+/* ---------------------------------- */
+
+#openButton {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #e53935; /* Rojo festivo más intenso */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px; /* Aumentado a 20px para separarlo del contador */
+    min-height: 44px;
+    -webkit-tap-highlight-color: transparent;
+    font-weight: bold;
+}
+
+#openButton:hover:not(:disabled) {
+    background-color: #cccccc;
+}
+
+#openButton:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* ---------------------------------- */
+/* ANIMACIONES            */
+/* ---------------------------------- */
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); } /* Reducido a 1.03 para menos agresividad */
+    100% { transform: scale(1); }
+}
+
+/* ---------------------------------- */
+/* MEDIA QUERIES (MÓVILES)       */
+/* ---------------------------------- */
+
+/* Estilos específicos para móviles */
+@media (max-width: 480px) {
+    body {
+        /* Permite el scroll si el contenido es demasiado grande (seguro) */
+        overflow: auto; 
+        -webkit-overflow-scrolling: touch; 
+    }
+    
+    .container {
+        padding: 10px;
+        min-height: 100vh;
+        /* Aseguramos que siga centrado */
+        align-items: center; 
+    }
+    
+    .gift-container {
+        width: 100%;
+        max-width: 320px;
+        margin: auto;
+        padding: 20px 15px;
+    }
+    
+    h2 {
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+    
+    .gift-image {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 15px;
+    }
+    
+    .countdown {
+        font-size: 16px;
+    }
+    
+    .countdown-values {
+        gap: 5px;
+    }
+    
+    .countdown-item {
+        min-width: 45px;
+        padding: 6px;
+    }
+    
+    .countdown-number {
+        font-size: 18px;
+    }
+    
+    .countdown-label {
+        font-size: 10px;
+    }
+    
+    /* Prevenir zoom en iOS */
+    input, select, textarea, button {
+        font-size: 16px !important; 
+        min-height: 44px;
+    }
+}
+
+/* Orientación landscape en móviles */
+@media (max-width: 480px) and (orientation: landscape) {
+    .container {
+        /* Centrado estricto en landscape */
+        align-items: center;
+        padding: 5px;
+        min-height: 100vh;
+    }
+    
+    .gift-container {
+        max-width: 300px;
+        padding: 15px;
+        margin: auto;
+        position: relative;
+    }
+    
+    .gift-image {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 10px;
+    }
+}
