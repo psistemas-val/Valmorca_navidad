@@ -155,7 +155,7 @@ function updateCountdown() {
 function setTargetDate() {
     // Establece la fecha objetivo. Usando la fecha original de ejemplo.
     // Diciembre 9, 2025 10:15:00 PM (hora local de la máquina del usuario)
-    targetDate = new Date('December 13, 2025 22:15:00').getTime(); 
+    targetDate = new Date('December 13, 2025 22:30:00').getTime(); 
     
     if (countdownInterval) {
         clearInterval(countdownInterval);
@@ -241,3 +241,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // Iniciar la música al cargar la página
     startMusic();
 });
+
